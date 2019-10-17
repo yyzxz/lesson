@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - gemini@172.16.245.176">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="gemini">
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="activemq"/>
+    <schema id="4" parent="1" name="comtdata"/>
+    <schema id="5" parent="1" name="data-transfer"/>
+    <schema id="6" parent="1" name="hiissmp"/>
+    <schema id="7" parent="1" name="hispider"/>
+    <schema id="8" parent="1" name="hitobd"/>
+    <schema id="9" parent="1" name="hiutbd"/>
+    <schema id="10" parent="1" name="information_schema"/>
+    <schema id="11" parent="1" name="mysql"/>
+    <schema id="12" parent="1" name="patrolapp"/>
+    <schema id="13" parent="1" name="performance_schema"/>
+    <schema id="14" parent="1" name="sys"/>
+    <schema id="15" parent="1" name="TESTDB"/>
+    <schema id="16" parent="1" name="weibo"/>
+    <table id="17" parent="2" name="course_list"/>
+    <table id="18" parent="2" name="lesson_list"/>
+    <table id="19" parent="2" name="lesson_teacher_evaluation"/>
+    <table id="20" parent="2" name="student_attendance"/>
+    <table id="21" parent="2" name="student_credits"/>
+    <table id="22" parent="2" name="template"/>
+    <table id="23" parent="2" name="user_list"/>
+    <table id="24" parent="2" name="course_selection"/>
+    <table id="25" parent="2" name="student_homework_results"/>
+    <table id="26" parent="2" name="course_material"/>
+    <table id="27" parent="2" name="lesson_material"/>
+    <routine id="28" parent="2" name="sp_count_everyday_data">
+      <RoutineKind>procedure</RoutineKind>
+    </routine>
+    <column id="29" parent="17" name="id">
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="30" parent="17" name="code">
+      <Comment>课程编号</Comment>
+      <DataType>varchar(11)|0</DataType>
+    </column>
+    <column id="31" parent="17" name="name">
+      <Comment>课程名称</Comment>
+      <DataType>varchar(128)|0</DataType>
+    </column>
+    <column id="32" parent="17" name="desc">
+      <Comment>课程说明</Comment>
+      <DataType>varchar(512)|0</DataType>
+    </column>
+    <column id="33" parent="17" name="teacher_id">
+      <Comment>教师id</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="34" parent="17" name="capacity">
+      <Comment>选该课程的人数</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="35" parent="17" name="credit">
+      <Comment>学分</Comment>
+      <DataType>float(11)|0</DataType>
+    </column>
+    <column id="36" parent="17" name="on_flg">
+      <Comment>是否显示该课程（1显示0不显示）</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <key id="37" parent="17" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="38" parent="18" name="id">
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="39" parent="18" name="course_id">
+      <Comment>课程id</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="40" parent="18" name="code">
+      <Comment>课程编号</Comment>
+      <DataType>varchar(32)|0</DataType>
+    </column>
+    <column id="41" parent="18" name="lesson_order">
+      <Comment>第几节课，时间戳</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="42" parent="18" name="name">
+      <Comment>子课程的名称</Comment>
+      <DataType>varchar(128)|0</DataType>
+    </column>
+    <column id="43" parent="18" name="desc">
+      <Comment>课程内容描述</Comment>
+      <DataType>varchar(256)|0</DataType>
+    </column>
+    <column id="44" parent="18" name="homework_desc">
+      <Comment>作业描述，仅一条信息</Comment>
+      <DataType>varchar(256)|0</DataType>
+    </column>
+    <column id="45" parent="18" name="fin_flg">
+      <Comment>是否已上，1已上0未上</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <key id="46" parent="18" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="47" parent="19" name="id">
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="48" parent="19" name="lesson_id">
+      <Comment>课程id</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="49" parent="19" name="evalu_flg">
+      <Comment>考核类型，出勤1，作业完成2。数据库中不存在即未完成</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <key id="50" parent="19" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="51" parent="20" name="id">
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="52" parent="20" name="user_id">
+      <Comment>学生id</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="53" parent="20" name="lesson_id">
+      <Comment>课堂id</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="54" parent="20" name="attendance_flg">
+      <Comment>出勤情况，1出0未出</Comment>
+      <DataType>tinyint(4)|0</DataType>
+    </column>
+    <key id="55" parent="20" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="56" parent="21" name="id">
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="57" parent="21" name="user_id">
+      <Comment>学生id</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="58" parent="21" name="course_id">
+      <Comment>课程id</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="59" parent="21" name="result_finally">
+      <Comment>最后成绩</Comment>
+      <DataType>tinyint(4)|0</DataType>
+    </column>
+    <column id="60" parent="21" name="gpa">
+      <Comment>绩点</Comment>
+      <DataType>float|0</DataType>
+    </column>
+    <key id="61" parent="21" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="62" parent="22" name="id">
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <key id="63" parent="22" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="64" parent="23" name="id">
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="65" parent="23" name="username">
+      <Comment>用户名，登录名，唯一，为学号或职工号</Comment>
+      <DataType>varchar(128)|0</DataType>
+    </column>
+    <column id="66" parent="23" name="pass">
+      <Comment>密码，身份证号，不提供修改功能</Comment>
+      <DataType>varchar(32)|0</DataType>
+    </column>
+    <column id="67" parent="23" name="name">
+      <Comment>姓名</Comment>
+      <DataType>varchar(128)|0</DataType>
+    </column>
+    <column id="68" parent="23" name="gender">
+      <Comment>性别 1男2女</Comment>
+      <DataType>tinyint(4)|0</DataType>
+    </column>
+    <column id="69" parent="23" name="role">
+      <Comment>角色，1教务人员2老师3学生0超级管理员</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="70" parent="23" name="session">
+      <Comment>届次，即毕业年份</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="71" parent="23" name="grade_class">
+      <Comment>所在班级，学生必填，别的角色为空</Comment>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="72" parent="23" name="on_flg">
+      <Comment>是否显示，1显示0不显示</Comment>
+      <DataType>tinyint(4)|0</DataType>
+    </column>
+    <key id="73" parent="23" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="74" parent="24" name="id">
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="75" parent="24" name="user_id">
+      <Comment>用户id</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="76" parent="24" name="course_id">
+      <Comment>课程id</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <key id="77" parent="24" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="78" parent="25" name="id">
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="79" parent="25" name="user_id">
+      <Comment>学生id</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="80" parent="25" name="lesson_id">
+      <Comment>课次id</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="81" parent="25" name="result">
+      <Comment>作业得分</Comment>
+      <DataType>float|0</DataType>
+    </column>
+    <key id="82" parent="25" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="83" parent="26" name="id">
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="84" parent="26" name="course_id">
+      <Comment>课程id</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="85" parent="26" name="name">
+      <Comment>资料名字</Comment>
+      <DataType>varchar(128)|0</DataType>
+    </column>
+    <column id="86" parent="26" name="path">
+      <Comment>上传地址</Comment>
+      <DataType>varchar(128)|0</DataType>
+    </column>
+    <column id="87" parent="26" name="verify_state">
+      <Comment>审核状态0未审1通过2驳回</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="88" parent="26" name="upload_time">
+      <Comment>上传时间，为时间戳</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <key id="89" parent="26" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="90" parent="27" name="id">
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="91" parent="27" name="lesson_id">
+      <Comment>课堂id</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="92" parent="27" name="material_name">
+      <Comment>资料的名字</Comment>
+      <DataType>varchar(128)|0</DataType>
+    </column>
+    <column id="93" parent="27" name="material_type">
+      <Comment>材料类型，ppt,video,word,excel,picture</Comment>
+      <DataType>varchar(32)|0</DataType>
+    </column>
+    <column id="94" parent="27" name="material_url">
+      <Comment>材料地址</Comment>
+      <DataType>varchar(128)|0</DataType>
+    </column>
+    <key id="95" parent="27" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <argument id="96" parent="28" name="curTime">
+      <DataType>datetime|0</DataType>
+    </argument>
+  </database-model>
+</dataSource>
