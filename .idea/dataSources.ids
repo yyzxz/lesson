@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - gemini@172.16.245.176" uuid="8dadcf70-4db7-416d-a487-b618d4c60ece">
+    <database-info product="MySQL" version="5.7.27-0ubuntu0.16.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+      <schema id="1" name="gemini">
+        <visible>1</visible>
+      </schema>
+      <schema id="2" name="activemq"/>
+      <schema id="3" name="comtdata"/>
+      <schema id="4" name="data-transfer"/>
+      <schema id="5" name="hiissmp"/>
+      <schema id="6" name="hispider"/>
+      <schema id="7" name="hitobd"/>
+      <schema id="8" name="hiutbd"/>
+      <schema id="9" name="information_schema"/>
+      <schema id="10" name="mysql"/>
+      <schema id="11" name="patrolapp"/>
+      <schema id="12" name="performance_schema"/>
+      <schema id="13" name="sys"/>
+      <schema id="14" name="TESTDB"/>
+      <schema id="15" name="weibo"/>
+      <table id="16" parent="1" name="course_list"/>
+      <table id="17" parent="1" name="lesson_list"/>
+      <table id="18" parent="1" name="lesson_teacher_evaluation"/>
+      <table id="19" parent="1" name="student_attendance"/>
+      <table id="20" parent="1" name="student_credits"/>
+      <table id="21" parent="1" name="template"/>
+      <table id="22" parent="1" name="user_list"/>
+      <table id="23" parent="1" name="course_selection"/>
+      <table id="24" parent="1" name="student_homework_results"/>
+      <table id="25" parent="1" name="course_material"/>
+      <table id="26" parent="1" name="lesson_material"/>
+      <routine id="27" parent="1" name="sp_count_everyday_data">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <column id="28" parent="16" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="29" parent="16" name="code">
+        <comment>课程编号</comment>
+        <data-type>varchar(11)|0</data-type>
+      </column>
+      <column id="30" parent="16" name="name">
+        <comment>课程名称</comment>
+        <data-type>varchar(128)|0</data-type>
+      </column>
+      <column id="31" parent="16" name="desc">
+        <comment>课程说明</comment>
+        <data-type>varchar(512)|0</data-type>
+      </column>
+      <column id="32" parent="16" name="teacher_id">
+        <comment>教师id</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="33" parent="16" name="capacity">
+        <comment>选该课程的人数</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="34" parent="16" name="credit">
+        <comment>学分</comment>
+        <data-type>float(11)|0</data-type>
+      </column>
+      <column id="35" parent="16" name="on_flg">
+        <comment>是否显示该课程（1显示0不显示）</comment>
+        <data-type>tinyint(4)|0</data-type>
+        <default-expression>&apos;1&apos;</default-expression>
+      </column>
+      <key id="36" parent="16" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="37" parent="17" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="38" parent="17" name="course_id">
+        <comment>课程id</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="39" parent="17" name="code">
+        <comment>课程编号</comment>
+        <data-type>varchar(32)|0</data-type>
+      </column>
+      <column id="40" parent="17" name="lesson_order">
+        <comment>第几节课，时间戳</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="41" parent="17" name="name">
+        <comment>子课程的名称</comment>
+        <data-type>varchar(128)|0</data-type>
+      </column>
+      <column id="42" parent="17" name="desc">
+        <comment>课程内容描述</comment>
+        <data-type>varchar(256)|0</data-type>
+      </column>
+      <column id="43" parent="17" name="homework_desc">
+        <comment>作业描述，仅一条信息</comment>
+        <data-type>varchar(256)|0</data-type>
+      </column>
+      <column id="44" parent="17" name="fin_flg">
+        <comment>是否已上，1已上0未上</comment>
+        <data-type>tinyint(4)|0</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <key id="45" parent="17" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="46" parent="18" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="47" parent="18" name="lesson_id">
+        <comment>课程id</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="48" parent="18" name="evalu_flg">
+        <comment>考核类型，出勤1，作业完成2。数据库中不存在即未完成</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <key id="49" parent="18" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="50" parent="19" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="51" parent="19" name="user_id">
+        <comment>学生id</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="52" parent="19" name="lesson_id">
+        <comment>课堂id</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="53" parent="19" name="attendance_flg">
+        <comment>出勤情况，1出0未出</comment>
+        <data-type>tinyint(4)|0</data-type>
+      </column>
+      <key id="54" parent="19" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="55" parent="20" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="56" parent="20" name="user_id">
+        <comment>学生id</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="57" parent="20" name="course_id">
+        <comment>课程id</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="58" parent="20" name="result_finally">
+        <comment>最后成绩</comment>
+        <data-type>tinyint(4)|0</data-type>
+      </column>
+      <column id="59" parent="20" name="gpa">
+        <comment>绩点</comment>
+        <data-type>float|0</data-type>
+      </column>
+      <key id="60" parent="20" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="61" parent="21" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <key id="62" parent="21" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="63" parent="22" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="64" parent="22" name="username">
+        <comment>用户名，登录名，唯一，为学号或职工号</comment>
+        <data-type>varchar(128)|0</data-type>
+      </column>
+      <column id="65" parent="22" name="pass">
+        <comment>密码，身份证号，不提供修改功能</comment>
+        <data-type>varchar(32)|0</data-type>
+      </column>
+      <column id="66" parent="22" name="name">
+        <comment>姓名</comment>
+        <data-type>varchar(128)|0</data-type>
+      </column>
+      <column id="67" parent="22" name="gender">
+        <comment>性别 1男2女</comment>
+        <data-type>tinyint(4)|0</data-type>
+      </column>
+      <column id="68" parent="22" name="role">
+        <comment>角色，1教务人员2老师3学生0超级管理员</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="69" parent="22" name="session">
+        <comment>届次，即毕业年份</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="70" parent="22" name="grade_class">
+        <comment>所在班级，学生必填，别的角色为空</comment>
+        <data-type>varchar(255)|0</data-type>
+      </column>
+      <column id="71" parent="22" name="on_flg">
+        <comment>是否显示，1显示0不显示</comment>
+        <data-type>tinyint(4)|0</data-type>
+      </column>
+      <key id="72" parent="22" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="73" parent="23" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="74" parent="23" name="user_id">
+        <comment>用户id</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="75" parent="23" name="course_id">
+        <comment>课程id</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <key id="76" parent="23" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="77" parent="24" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="78" parent="24" name="user_id">
+        <comment>学生id</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="79" parent="24" name="lesson_id">
+        <comment>课次id</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="80" parent="24" name="result">
+        <comment>作业得分</comment>
+        <data-type>float|0</data-type>
+      </column>
+      <key id="81" parent="24" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="82" parent="25" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="83" parent="25" name="course_id">
+        <comment>课程id</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="84" parent="25" name="name">
+        <comment>资料名字</comment>
+        <data-type>varchar(128)|0</data-type>
+      </column>
+      <column id="85" parent="25" name="path">
+        <comment>上传地址</comment>
+        <data-type>varchar(128)|0</data-type>
+      </column>
+      <column id="86" parent="25" name="verify_state">
+        <comment>审核状态0未审1通过2驳回</comment>
+        <data-type>tinyint(4)|0</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="87" parent="25" name="upload_time">
+        <comment>上传时间，为时间戳</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <key id="88" parent="25" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="89" parent="26" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="90" parent="26" name="lesson_id">
+        <comment>课堂id</comment>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="91" parent="26" name="material_name">
+        <comment>资料的名字</comment>
+        <data-type>varchar(128)|0</data-type>
+      </column>
+      <column id="92" parent="26" name="material_type">
+        <comment>材料类型，ppt,video,word,excel,picture</comment>
+        <data-type>varchar(32)|0</data-type>
+      </column>
+      <column id="93" parent="26" name="material_url">
+        <comment>材料地址</comment>
+        <data-type>varchar(128)|0</data-type>
+      </column>
+      <key id="94" parent="26" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <argument id="95" parent="27" name="curTime">
+        <direction>IN</direction>
+        <data-type>datetime|0</data-type>
+      </argument>
+    </database-model>
+  </data-source>
+</component>

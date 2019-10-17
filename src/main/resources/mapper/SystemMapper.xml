@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guiyang.classselection.mapper.SystemMapper">
+    <!--admin-->
+    <insert id="addUser">
+      INSERT INTO user_list
+      (username, pass, `name`, gender, role, `session`, grade_class)
+      VALUES (#{usr.username},#{usr.pass},#{usr.name},#{usr.gender},#{usr.role},#{uesr.session}
+      ,user.grade_class);
+    </insert>
+
+    <update id="updateUser">
+        UPDATE user_list SET username=#{usr.username},name=#{usr.name} ,
+        pass=#{usr.pass},gender=#{usr.gender} WHERE id= #{usr.id}
+    </update>
+
+    <delete id="delUser">
+        DELETE FROM user_list WHERE id = #{0}
+    </delete>
+
+    <select id="list" resultType="java.util.HashMap">
+        SELECT * FROM user_list WHERE role=#{0}
+    </select>
+    <select id="userInfo" resultType="java.util.HashMap">
+        SELECT * FROM user_list WHERE id = #{0}
+    </select>
+    <!--edu-->
+    <insert id="addCourse">
+        INSERT INTO course_list
+        (code, name, `desc`, teacher_id, credit)
+        VALUES (#{item.code},#{item.name},#{item.desc},#{item.teacher_id},#{item.credit});
+    </insert>
+    <select id="listCourse" resultType="java.util.HashMap">
+        SELECT
+          a.*,
+          b.username,
+          b.name
+        FROM course_list a
+          JOIN user_list b ON a.teacher_id = b.id
+        WHERE a.on_flg = 1;
+    </select>
+    <select id="courseProgress" resultMap="java.util.HashMap">
+        SELECT
+          (SELECT count(*)
+           FROM lesson_list
+           WHERE fin_flg = 1 AND course_id = #{0}) finish,
+          (SELECT count(*)
+           FROM lesson_list WHERE course_id = #{0}) all_num
+    </select>
+    <select id="listLesson" resultType="java.util.HashMap">
+        SELECT * FROM lesson_list
+        <where>
+            <if test="id != null and id != ''">
+                course_id = #{id}
+            </if>
+        </where>
+       ORDER BY lesson_order ASC
+    </select>
+    <select id="coursePlanNameRepeat" resultType="int">
+        SELECT COUNT(*) FROM lesson_list WHERE course_id = #{0} AND name = #{1}
+    </select>
+    <insert id="addCoursePlan">
+        insert INTO lesson_list
+        (course_id, code, lesson_order, name, `desc`)
+        VALUES (#{item.course_id},#{item.code},#{item.lesson_order},#{item.name},#{item.desc})
+    </insert>
+    <select id="evaluInfo">
+        SELECT *
+        FROM lesson_list a LEFT JOIN lesson_teacher_evaluation b ON a.id = b.lesson_id
+         LEFT JOIN course_list c ON a.course_id = c.id
+        WHERE a.course_id = #{0} AND b.evalu_flg = #{1}
+    </select>
+    <select id="listCourseMaterial" resultType="java.util.HashMap">
+        SELECT
+          a.*,
+          b.name,
+          b.path,
+          b.verify_state
+        FROM course_list a LEFT JOIN course_material b ON a.id = b.course_id
+        WHERE upload_time = (SELECT max(upload_time)
+                             FROM course_material
+                             WHERE course_id = a.id)
+        GROUP BY a.id
+    </select>
+    <update id="verifyCourseMaterial">
+        UPDATE course_material a
+        SET verify_state = #{1}
+        WHERE course_id = #{0} AND upload_time = (SELECT max(upload_time)
+                                               FROM course_material
+                                               WHERE course_id = a.id)
+    </update>
+    <select id="studentResult" resultType="java.util.HashMap">
+        SELECT
+          a.*,
+          b.result_finally,
+          b.gpa,
+          c.name course_name
+        FROM user_list a LEFT JOIN student_credits b ON a.id = b.id
+          LEFT JOIN course_list c ON
+                                    b.course_id = c.id
+        WHERE a.role = 3
+    </select>
+
+</mapper>

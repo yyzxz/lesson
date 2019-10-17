@@ -1,0 +1,21 @@
+app:
+  name: Class-Selection
+  description:
+
+# mybatis????????????
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.guiyang.classselection.pojo.vo, com.guiyang.classselection.pojo.qo, com.guiyang.classselection.pojo.dto
+  configuration:
+      map-underscore-to-camel-case: true
+      default-fetch-size: 100
+      default-statement-timeout: 30
+
+spring:
+  profiles:
+   active: dev
+
+  session:
+    store-type: none
+server:
+  port: 9090
